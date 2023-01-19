@@ -84,6 +84,7 @@ echo \
   $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
 
 # dockerインストール
+sudo apt-get update
 sudo apt-get install docker-ce docker-compose-plugin
 ```
 
@@ -94,16 +95,17 @@ sudo usermod -aG docker $(id)
 ```
 
 WSLにログインした時点でdockerが自動で起動する設定を入れます。
-ユーザホームにある`.bashrc`の最終行に、以下の記述を追記します。
+ユーザホームにある`.profile`の最終行に、以下の記述を追記します。
 
 ```
 sudo /etc/init.d/docker start
+echo "sudo /etc/init.d/docker start" >> .profile
 ```
 
 いったんログアウト後、ログインした後以下コマンドを打って、dockerが起動しているかを確認します。
 
 ```
-docker run hello-world
+docker run --rm hello-world
 ```
 
 `Hello from Docker!`と表示されればOKです。
