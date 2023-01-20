@@ -4,7 +4,8 @@
 
 必要なもの
 
-- 8GB以上のPC
+- メモリ8GB以上
+- 250GB以上あるディスク
 - Windows10 バージョン2004以降 or Windows11
 - VSCode
 - 豊潤なインターネット回線
@@ -92,7 +93,7 @@ sudo apt-get install docker-ce docker-compose-plugin
 インストールが終わったら、自ユーザにdockerグループを追加します。
 
 ```
-sudo usermod -aG docker $(id)
+sudo usermod -aG docker $(whoami)
 ```
 
 WSLにログインした時点でdockerが自動で起動する設定を入れます。
@@ -106,6 +107,10 @@ echo "sudo /etc/init.d/docker start" >> .profile
 いったんログアウト後、ログインした後以下コマンドを打って、dockerが起動しているかを確認します。
 
 ```
+# いったんUbuntsuから抜ける
+exit
+
+# 再度ログインして、下記コマンドを実行
 docker run --rm hello-world
 ```
 
